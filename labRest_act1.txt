@@ -1,0 +1,11 @@
+Call 1:
+gh api https://api.github.com/gitignore/templates/Java
+
+Call 2:
+gh api https://api.github.com/repos/kgary/ser421public/branches
+
+Call 3:
+gh api https://api.github.com/repos/kgary/ser421public/issues/34/comments
+
+Call 4:
+gh api --method Post  https://api.github.com/repos/kgary/ser421public/issues/34/comments -f 'body=vzavalar: comment for issue 34'
