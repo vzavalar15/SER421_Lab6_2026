@@ -1,0 +1,13 @@
+package edu.asu.SER421.Activity2;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class Activity2ApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
