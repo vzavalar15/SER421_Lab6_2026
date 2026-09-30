@@ -1,9 +1,9 @@
 package edu.asu.SER421.Activity2.api.controllers;
 
+import edu.asu.SER421.Activity2.api.modelhelpers.AddSurveyItemRequest;
 import edu.asu.SER421.Activity2.api.modelhelpers.SurveyItemRequest;
 import edu.asu.SER421.Activity2.model.SurveyItem;
 import edu.asu.SER421.Activity2.services.SurveyItemService;
-import edu.asu.SER421.Activity2.services.impl.SurveyItemServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,4 +22,5 @@ public class SurveyItemController {
     public SurveyItem createSurveyItem(@RequestBody SurveyItemRequest surveyItemRequest){
         return __surveyItemServ.createSurveyItem(surveyItemRequest.getQuestion(), surveyItemRequest.getCorrectAnswer(), surveyItemRequest.getAnswerOptions());
     }
+
 }

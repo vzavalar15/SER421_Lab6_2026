@@ -5,14 +5,17 @@ import java.util.List;
 
 public class SurveyInstance {
     private int id;
+    private String userName;
     private SurveyInstanceState state;
     private List<SurveyItem> surveyItemsList;
 
     public SurveyInstance(){
 
     }
-    public SurveyInstance(int id, List<SurveyItem> surveyItemsList){
+    public SurveyInstance(int id,String userName, SurveyInstanceState state, List<SurveyItem> surveyItemsList){
         this.id = id;
+        this.userName = userName;
+        this.state = state;
         this.surveyItemsList = surveyItemsList;
     }
 
@@ -33,5 +36,11 @@ public class SurveyInstance {
     }
     public void setSurveyItemsList(List<SurveyItem> surveyItemsList) {
         this.surveyItemsList = surveyItemsList;
+    }
+    public String getUserName() {
+        return userName;
+    }
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

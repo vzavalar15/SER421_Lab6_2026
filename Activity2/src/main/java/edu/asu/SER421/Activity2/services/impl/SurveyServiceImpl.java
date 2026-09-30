@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
 public class SurveyServiceImpl implements SurveyService {
     private ArrayList<Survey> surveyList = new ArrayList<>();
 
@@ -34,9 +33,32 @@ public class SurveyServiceImpl implements SurveyService {
     }
 
     @Override
+    public Survey getSurvey(int id){
+        for(Survey survey : surveyList){
+            if(id == survey.getId()){
+                return survey;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public Survey createSurvey(List<SurveyItem> surveyItemsList) {
         Survey newSurvey = new Survey(surveyList.size(), surveyItemsList, SurveyState.CREATED);
         surveyList.add(newSurvey);
+        return newSurvey;
+    }
+
+    @Override
+    public SurveyItem addSurveyItem(String question, String correctAnswer, List<String> answerOptions, List<Integer> surveys) {
+        SurveyItem newSurvey = new SurveyItem(surveyList.size()+20, question, correctAnswer, answerOptions);
+        for(int i : surveys){
+            for(Survey j : surveyList){
+                if(i == j.getId()){
+                    j.addSurveyItem(newSurvey);
+                }
+            }
+        }
         return newSurvey;
     }
 }
