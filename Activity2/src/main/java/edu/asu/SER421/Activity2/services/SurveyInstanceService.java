@@ -13,5 +13,5 @@ public interface SurveyInstanceService {
     }
 
     public List<SurveyInstance> getSurveyInstances();
-    public SurveyInstance createSurveyInstance(String userName, SurveyInstanceState state,  List<SurveyItem> surveyItemsList);
+    public SurveyInstance createSurveyInstance(String userName, int surveyId);
 }

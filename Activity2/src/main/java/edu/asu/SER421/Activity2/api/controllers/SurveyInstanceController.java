@@ -1,20 +1,29 @@
 package edu.asu.SER421.Activity2.api.controllers;
 
+import edu.asu.SER421.Activity2.api.modelhelpers.SurveyInstanceRequest;
+import edu.asu.SER421.Activity2.api.modelhelpers.SurveyRequest;
+import edu.asu.SER421.Activity2.model.Survey;
+import edu.asu.SER421.Activity2.model.SurveyInstance;
 import edu.asu.SER421.Activity2.services.SurveyInstanceService;
 import edu.asu.SER421.Activity2.services.SurveyService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequestMapping("/survey/instance")
 @RestController
 public class SurveyInstanceController {
     private SurveyInstanceService __instanceService = SurveyInstanceService.getInstance();
-    private SurveyService __surveyService = SurveyService.getInstance();
 
 
     @GetMapping
-    public String getSurveyInstance(){
-        return __surveyService.getSurvey(0).getSurveyItemsList().getFirst().getQuestion();
+    public List<SurveyInstance> getSurveyInstance(){
+        return __instanceService.getSurveyInstances();
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public SurveyInstance createSurveyInstance(@RequestBody SurveyInstanceRequest surveyInstanceRequest){
+        System.out.println("lsnsljskllmsl");
+        return __instanceService.createSurveyInstance(surveyInstanceRequest.getUserName(),surveyInstanceRequest.getSurveyId());
     }
 }

@@ -4,26 +4,34 @@ import edu.asu.SER421.Activity2.model.enums.SurveyInstanceState;
 import java.util.List;
 
 public class SurveyInstance {
-    private int id;
+    private int instanceId;
     private String userName;
     private SurveyInstanceState state;
+    private int surveyId;
     private List<SurveyItem> surveyItemsList;
 
     public SurveyInstance(){
 
     }
-    public SurveyInstance(int id,String userName, SurveyInstanceState state, List<SurveyItem> surveyItemsList){
-        this.id = id;
+    public SurveyInstance(int instanceId,String userName, SurveyInstanceState state, List<SurveyItem> surveyItemsList, int surveyId){
+        this.instanceId = instanceId;
         this.userName = userName;
         this.state = state;
         this.surveyItemsList = surveyItemsList;
+        this.surveyId = surveyId;
     }
 
-    public int getId() {
-        return id;
+    public int getInstanceId() {
+        return instanceId;
     }
-    public void setId(int id) {
-        this.id = id;
+    public void setInstanceId(int instanceId) {
+        this.instanceId = instanceId;
+    }
+    public int getSurveyId() {
+        return surveyId;
+    }
+    public void setSurveyId(int surveyId) {
+        this.surveyId = surveyId;
     }
     public SurveyInstanceState getState() {
         return state;
