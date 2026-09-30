@@ -42,6 +42,51 @@ public class SurveyInstanceServiceImpl implements SurveyInstanceService {
         return surveyInstance;
     }
 
+    @Override
+    public SurveyInstance acceptInstanceAnswer(int surveyId, int itemId, String answerChosen) {
+        SurveyInstance instanceToReturn = null;
+        for (SurveyInstance survey: surveyInstanceList){
+            if (surveyId == survey.getInstanceId()){
+                for(SurveyItemInstance item : survey.getSurveyItemsList()){
+                    if (itemId == item.getId()){
+                        item.setAnswerChosen(answerChosen);
+                        item.setItemState(SurveyItemInstanceState.COMPLETED);
+                        survey.setState(SurveyInstanceState.INPROGRESS);
+                        if(answerChosen.equals(item.getCorrectAnswer())){
+                            item.setIfAnsweredCorrectly(1);
+                        }
+                        else{
+                            item.setIfAnsweredCorrectly(0);
+                        }
+                        instanceToReturn = survey;
+                    }
+                }
+            }
+        }
+        return instanceToReturn;
+    }
+
+    @Override
+    public List<SurveyInstance> getSurveyInstanceFromState(SurveyInstanceState state) {
+        ArrayList<SurveyInstance> listTorReturn = new ArrayList<>();
+        for (SurveyInstance survey: surveyInstanceList){
+            if(survey.getState().equals(state)){
+                listTorReturn.add(survey);
+            }
+        }
+        return listTorReturn;
+    }
+
+    @Override
+    public SurveyInstance getSurveyInstance(int id) {
+        for (SurveyInstance survey: surveyInstanceList){
+            if(survey.getInstanceId() == id){
+                return survey;
+            }
+        }
+        return null;
+    }
+
     public List<SurveyItemInstance> createSurveyItemsInstance(List<SurveyItem> itemList){
         ArrayList<SurveyItemInstance> instances = new ArrayList<>();
         for (SurveyItem item: itemList){
