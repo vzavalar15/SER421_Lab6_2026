@@ -8,12 +8,12 @@ public class SurveyInstance {
     private String userName;
     private SurveyInstanceState state;
     private int surveyId;
-    private List<SurveyItem> surveyItemsList;
+    private List<SurveyItemInstance> surveyItemsList;
 
     public SurveyInstance(){
 
     }
-    public SurveyInstance(int instanceId,String userName, SurveyInstanceState state, List<SurveyItem> surveyItemsList, int surveyId){
+    public SurveyInstance(int instanceId,String userName, SurveyInstanceState state, List<SurveyItemInstance> surveyItemsList, int surveyId){
         this.instanceId = instanceId;
         this.userName = userName;
         this.state = state;
@@ -39,16 +39,16 @@ public class SurveyInstance {
     public void setState(SurveyInstanceState state) {
         this.state = state;
     }
-    public List<SurveyItem> getSurveyItemsList() {
-        return surveyItemsList;
-    }
-    public void setSurveyItemsList(List<SurveyItem> surveyItemsList) {
-        this.surveyItemsList = surveyItemsList;
-    }
     public String getUserName() {
         return userName;
     }
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+    public List<SurveyItemInstance> getSurveyItemsList() {
+        return surveyItemsList;
+    }
+    public void setSurveyItemsList(List<SurveyItemInstance> surveyItemsList) {
+        this.surveyItemsList = surveyItemsList;
     }
 }

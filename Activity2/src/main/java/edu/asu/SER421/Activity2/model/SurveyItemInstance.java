@@ -12,25 +12,25 @@ public class SurveyItemInstance {
     private List<String> answerOptions = new ArrayList<>();
 
     private String answerChosen;
-    private boolean ifAnsweredCorrectly;
+    private int ifAnsweredCorrectly = -1;
     private SurveyItemInstanceState itemState;
 
     public SurveyItemInstance() {
     }
 
-    public SurveyItemInstance(int id, String question, String correctAnswer, String answerChosen, boolean ifAnsweredCorrectly, SurveyItemInstanceState state) {
+    public SurveyItemInstance(int id, String question, String correctAnswer, List<String> answerOptions, SurveyItemInstanceState state) {
         this.id = id;
         this.question = question;
         this.correctAnswer = correctAnswer;
-        this.answerChosen = answerChosen;
-        this.ifAnsweredCorrectly = ifAnsweredCorrectly;
+        this.answerOptions = answerOptions;
         this.itemState = state;
     }
 
-    public boolean isIfAnsweredCorrectly() {
+
+    public int getIfAnsweredCorrectly() {
         return ifAnsweredCorrectly;
     }
-    public void setIfAnsweredCorrectly(boolean ifAnsweredCorrectly) {
+    public void setIfAnsweredCorrectly(int ifAnsweredCorrectly) {
         this.ifAnsweredCorrectly = ifAnsweredCorrectly;
     }
     public String getAnswerChosen() {

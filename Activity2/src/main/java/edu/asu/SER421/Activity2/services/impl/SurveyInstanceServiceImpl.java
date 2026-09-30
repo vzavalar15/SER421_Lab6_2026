@@ -3,7 +3,9 @@ package edu.asu.SER421.Activity2.services.impl;
 import edu.asu.SER421.Activity2.model.Survey;
 import edu.asu.SER421.Activity2.model.SurveyInstance;
 import edu.asu.SER421.Activity2.model.SurveyItem;
+import edu.asu.SER421.Activity2.model.SurveyItemInstance;
 import edu.asu.SER421.Activity2.model.enums.SurveyInstanceState;
+import edu.asu.SER421.Activity2.model.enums.SurveyItemInstanceState;
 import edu.asu.SER421.Activity2.services.SurveyInstanceService;
 import edu.asu.SER421.Activity2.services.SurveyService;
 
@@ -21,7 +23,7 @@ public class SurveyInstanceServiceImpl implements SurveyInstanceService {
         Survey survey = __surveyService.getSurvey(0);
 
         surveyInstanceList.addAll(Arrays.asList(
-                new SurveyInstance(0, "James", SurveyInstanceState.CREATED, survey.getSurveyItemsList(), 0)
+                new SurveyInstance(0, "James", SurveyInstanceState.CREATED, createSurveyItemsInstance(survey.getSurveyItemsList()), 0)
         ));
 
     }
@@ -34,8 +36,22 @@ public class SurveyInstanceServiceImpl implements SurveyInstanceService {
     @Override
     public SurveyInstance createSurveyInstance(String userName, int surveyId) {
         Survey survey = __surveyService.getSurvey(surveyId);
-        SurveyInstance surveyInstance = new SurveyInstance(surveyInstanceList.size(), userName, SurveyInstanceState.CREATED, survey.getSurveyItemsList(), surveyId);
+
+        SurveyInstance surveyInstance = new SurveyInstance(surveyInstanceList.size(), userName, SurveyInstanceState.CREATED, createSurveyItemsInstance(survey.getSurveyItemsList()), surveyId);
         surveyInstanceList.add(surveyInstance);
         return surveyInstance;
+    }
+
+    public List<SurveyItemInstance> createSurveyItemsInstance(List<SurveyItem> itemList){
+        ArrayList<SurveyItemInstance> instances = new ArrayList<>();
+        for (SurveyItem item: itemList){
+            instances.add(new SurveyItemInstance(
+                    instances.size(),
+                    item.getQuestion(),
+                    item.getCorrectAnswer(),
+                    item.getAnswerOptions(),
+                    SurveyItemInstanceState.NOTCOMPLETED));
+        }
+        return instances;
     }
 }

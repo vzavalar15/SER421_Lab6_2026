@@ -23,7 +23,6 @@ public class SurveyInstanceController {
 
     @RequestMapping(method = RequestMethod.POST)
     public SurveyInstance createSurveyInstance(@RequestBody SurveyInstanceRequest surveyInstanceRequest){
-        System.out.println("lsnsljskllmsl");
         return __instanceService.createSurveyInstance(surveyInstanceRequest.getUserName(),surveyInstanceRequest.getSurveyId());
     }
 }
