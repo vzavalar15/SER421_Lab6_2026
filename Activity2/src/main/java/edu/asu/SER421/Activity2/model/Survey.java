@@ -12,9 +12,10 @@ public class Survey {
     public Survey(){
 
     }
-    public Survey(int id, List<SurveyItem> surveyItemsList){
+    public Survey(int id, List<SurveyItem> surveyItemsList, SurveyState state){
         this.id = id;
         this.surveyItemsList = surveyItemsList;
+        this.state = state;
     }
 
     public int getMaxSurveySize() {

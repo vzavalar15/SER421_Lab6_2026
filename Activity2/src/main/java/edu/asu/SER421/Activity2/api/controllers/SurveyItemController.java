@@ -11,16 +11,15 @@ import java.util.List;
 @RequestMapping("/item")
 @RestController
 public class SurveyItemController {
-    private SurveyItemService __SurveyItemServ = SurveyItemService.getInstance();
+    private SurveyItemService __surveyItemServ = SurveyItemService.getInstance();
 
     @GetMapping
     public List<SurveyItem> returnSurveyItems() throws Throwable{
-        return __SurveyItemServ.getSurveyItems();
+        return __surveyItemServ.getSurveyItems();
     }
 
     @RequestMapping(method= RequestMethod.POST)
     public SurveyItem createSurveyItem(@RequestBody SurveyItemRequest surveyItemRequest){
-        System.out.println(surveyItemRequest.getQuestion());
-        return __SurveyItemServ.createSurveyItem(surveyItemRequest.getQuestion(), surveyItemRequest.getCorrectAnswer(), surveyItemRequest.getAnswerOptions());
+        return __surveyItemServ.createSurveyItem(surveyItemRequest.getQuestion(), surveyItemRequest.getCorrectAnswer(), surveyItemRequest.getAnswerOptions());
     }
 }

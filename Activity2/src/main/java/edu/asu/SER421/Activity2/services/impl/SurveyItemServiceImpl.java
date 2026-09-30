@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SurveyItemServiceImpl implements SurveyItemService {
-    private ArrayList<SurveyItem> surItemsList = new ArrayList<>();
+    private ArrayList<SurveyItem> surveyItemsList = new ArrayList<>();
 
     public SurveyItemServiceImpl(){
         List<String> op1 = new ArrayList<>();
@@ -20,21 +20,20 @@ public class SurveyItemServiceImpl implements SurveyItemService {
         op1.add("1");
         op1.add("5");
 
-
-        surItemsList.addAll(Arrays.asList(
+        surveyItemsList.addAll(Arrays.asList(
                 new SurveyItem(0, "2+2", "4", op1)
         ));
     }
 
     @Override
     public List<SurveyItem> getSurveyItems() {
-        return this.surItemsList;
+        return this.surveyItemsList;
     }
 
     @Override
     public SurveyItem createSurveyItem(String question, String correctAnswer, List<String> answerOptions) {
-        SurveyItem newSurveyItem = new SurveyItem(surItemsList.size(), question, correctAnswer, answerOptions);
-        surItemsList.add(newSurveyItem);
+        SurveyItem newSurveyItem = new SurveyItem(surveyItemsList.size(), question, correctAnswer, answerOptions);
+        surveyItemsList.add(newSurveyItem);
         return newSurveyItem;
     }
 }
