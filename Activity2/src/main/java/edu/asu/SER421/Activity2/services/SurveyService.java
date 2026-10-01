@@ -15,5 +15,6 @@ public interface SurveyService {
     public List<Survey> getSurveys();
     public Survey getSurvey(int id);
     public Survey createSurvey(List<SurveyItem> surveyItemsList);
-    public SurveyItem addSurveyItem(String question, String correctAnswer, List<String> answerOptions, List<Integer> surveys);
-}
+    public SurveyItem addSurveyItem(int itemId, List<Integer> surveys);
+    public Survey deleteSurvey(int id);
+    }

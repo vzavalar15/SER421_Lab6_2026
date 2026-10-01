@@ -12,4 +12,5 @@ public interface SurveyItemService {
 
     public List<SurveyItem> getSurveyItems();
     public SurveyItem createSurveyItem(String question, String correctAnswer, List<String> answerOptions);
+    public boolean addItemToList(SurveyItem surveyItem);
 }

@@ -39,7 +39,8 @@ public class Survey {
     public void setSurveyItemsList(List<SurveyItem> surveyItemsList) {
         this.surveyItemsList = surveyItemsList;
     }
-    public void addSurveyItem(SurveyItem surveyItem){
-        this.surveyItemsList.add(surveyItem);
+    public void addItem(SurveyItem surveyItem){
+        surveyItemsList.add(surveyItem);
     }
+
 }

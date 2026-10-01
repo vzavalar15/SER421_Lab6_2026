@@ -8,18 +8,19 @@ import edu.asu.SER421.Activity2.model.enums.SurveyInstanceState;
 import edu.asu.SER421.Activity2.model.enums.SurveyItemInstanceState;
 import edu.asu.SER421.Activity2.services.SurveyInstanceService;
 import edu.asu.SER421.Activity2.services.SurveyService;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Service
 public class SurveyInstanceServiceImpl implements SurveyInstanceService {
     private ArrayList<SurveyInstance> surveyInstanceList = new ArrayList<>();
     private SurveyService __surveyService = SurveyService.getInstance();
 
 
     public SurveyInstanceServiceImpl(){
-
         Survey survey = __surveyService.getSurvey(0);
 
         surveyInstanceList.addAll(Arrays.asList(

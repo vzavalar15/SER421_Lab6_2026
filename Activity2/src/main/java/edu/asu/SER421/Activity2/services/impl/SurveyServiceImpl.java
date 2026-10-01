@@ -5,16 +5,19 @@ import edu.asu.SER421.Activity2.model.SurveyItem;
 import edu.asu.SER421.Activity2.model.enums.SurveyState;
 import edu.asu.SER421.Activity2.services.SurveyItemService;
 import edu.asu.SER421.Activity2.services.SurveyService;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
+@Service
 public class SurveyServiceImpl implements SurveyService {
     private ArrayList<Survey> surveyList = new ArrayList<>();
+    private SurveyItemService surveyItemService = SurveyItemService.getInstance();
 
     public SurveyServiceImpl(){
-        SurveyItemService surveyItemService = SurveyItemService.getInstance();
         List<SurveyItem> surveyItems = surveyItemService.getSurveyItems();
 
         List<SurveyItem> surveyItemList1 = new ArrayList<>();
@@ -52,20 +55,53 @@ public class SurveyServiceImpl implements SurveyService {
     @Override
     public Survey createSurvey(List<SurveyItem> surveyItemsList) {
         Survey newSurvey = new Survey(surveyList.size(), surveyItemsList, SurveyState.CREATED);
+        for(SurveyItem survey: newSurvey.getSurveyItemsList()){
+            if(survey.getQuestion().isEmpty() || survey.getCorrectAnswer().isEmpty()){
+                return null;
+            }
+            for(String opt: survey.getAnswerOptions()){
+                if(opt.isEmpty()){
+                    return null;
+                }
+            }
+        }
         surveyList.add(newSurvey);
         return newSurvey;
     }
 
     @Override
-    public SurveyItem addSurveyItem(String question, String correctAnswer, List<String> answerOptions, List<Integer> surveys) {
-        SurveyItem newSurvey = new SurveyItem(surveyList.size()+20, question, correctAnswer, answerOptions);
-        for(int i : surveys){
-            for(Survey j : surveyList){
-                if(i == j.getId()){
-                    j.addSurveyItem(newSurvey);
+    public SurveyItem addSurveyItem(int itemId, List<Integer> surveys) {
+        SurveyItem newSurvey = null;
+        for(SurveyItem items :surveyItemService.getSurveyItems()){
+            if(itemId == items.getId()){
+                newSurvey = items;
+                break;
+            }
+        }
+
+        for(int id : surveys){
+            for(Survey survey : surveyList){
+                if(!survey.getState().equals(SurveyState.DELETED)) {
+                    if (id == survey.getId()) {
+//                        System.out.println(surveyItemService.addItemToList(newSurvey));
+                        survey.addItem(newSurvey);
+                    }
                 }
             }
         }
         return newSurvey;
     }
-}
+
+    @Override
+    public Survey deleteSurvey(int id) {
+        for(Survey survey: surveyList){
+            if(survey.getId() == id){
+                survey.setState(SurveyState.DELETED);
+                return survey;
+            }
+        }
+        return null;
+    }
+
+
+    }
