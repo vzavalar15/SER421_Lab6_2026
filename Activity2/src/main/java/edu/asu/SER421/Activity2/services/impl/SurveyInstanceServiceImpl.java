@@ -23,6 +23,7 @@ public class SurveyInstanceServiceImpl implements SurveyInstanceService {
     public SurveyInstanceServiceImpl(){
         Survey survey = __surveyService.getSurvey(0);
 
+
         surveyInstanceList.addAll(Arrays.asList(
                 new SurveyInstance(0, "James", SurveyInstanceState.CREATED, createSurveyItemsInstance(survey.getSurveyItemsList()), 0)
         ));
@@ -37,6 +38,9 @@ public class SurveyInstanceServiceImpl implements SurveyInstanceService {
     @Override
     public SurveyInstance createSurveyInstance(String userName, int surveyId) {
         Survey survey = __surveyService.getSurvey(surveyId);
+        if (survey == null) {
+            return null;
+        }
 
         SurveyInstance surveyInstance = new SurveyInstance(surveyInstanceList.size(), userName, SurveyInstanceState.CREATED, createSurveyItemsInstance(survey.getSurveyItemsList()), surveyId);
         surveyInstanceList.add(surveyInstance);
@@ -50,6 +54,12 @@ public class SurveyInstanceServiceImpl implements SurveyInstanceService {
             if (surveyId == survey.getInstanceId()){
                 for(SurveyItemInstance item : survey.getSurveyItemsList()){
                     if (itemId == item.getId()){
+                        if(!item.getAnswerOptions().contains(answerChosen)){
+                            return null;
+                        }
+                        if(item.getItemState().equals(SurveyItemInstanceState.COMPLETED)){
+                            return null;
+                        }
                         item.setAnswerChosen(answerChosen);
                         item.setItemState(SurveyItemInstanceState.COMPLETED);
                         survey.setState(SurveyInstanceState.INPROGRESS);
@@ -74,6 +84,9 @@ public class SurveyInstanceServiceImpl implements SurveyInstanceService {
             if(survey.getState().equals(state)){
                 listTorReturn.add(survey);
             }
+        }
+        if(listTorReturn.isEmpty()){
+            return null;
         }
         return listTorReturn;
     }

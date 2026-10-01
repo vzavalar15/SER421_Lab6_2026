@@ -1,0 +1,494 @@
+{
+  "info": {
+    "_postman_id": "0255c925-772b-4d13-9d82-34c5f08428fe",
+    "name": "SER421_Lab6_Activity2",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "50178713",
+    "_collection_link": "https://go.postman.co/collection/50178713-0255c925-772b-4d13-9d82-34c5f08428fe?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "1. Create a survey item - passing case",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "    {\n    \"question\": \"what's 3-1?\",\n    \"correctAnswer\": \"2\",\n    \"answerOptions\": [\n        \"1\",\n        \"2\",\n        \"3\",\n        \"4\"\n    ]\n    }\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/item",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "item"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "1. Create a survey item - failing case - empty input",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "    {\n    \"question\": \"\",\n    \"correctAnswer\": \"2\",\n    \"answerOptions\": [\n        \"1\",\n        \"2\",\n        \"3\",\n        \"4\"\n    ]\n    }\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/item",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "item"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2. Create a survey - passing case",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"surveyItemsList\": [\n    {\n        \"id\": 5,\n        \"question\": \"6+2\",\n        \"correctAnswer\": \"8\",\n        \"answerOptions\": [\n            \"8\",\n            \"6\",\n            \"9\",\n            \"10\"\n        ]\n    },\n    {\n        \"id\": 6,\n        \"question\": \"what's 9-4?\",\n        \"correctAnswer\": \"5\",\n        \"answerOptions\": [\n            \"3\",\n            \"5\",\n            \"6\",\n            \"8\"\n        ]\n    }\n    ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/survey",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "survey"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2. Create a survey - failing case - empty input",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"surveyItemsList\": [\n    {\n        \"id\": 5,\n        \"question\": \"6+2\",\n        \"correctAnswer\": \"8\",\n        \"answerOptions\": [\n            \"8\",\n            \"6\",\n            \"9\",\n            \"10\"\n        ]\n    },\n    {\n        \"id\": 6,\n        \"question\": \"what's 9-4?\",\n        \"correctAnswer\": \"5\",\n        \"answerOptions\": [\n            \"\",\n            \"5\",\n            \"6\",\n            \"8\"\n        ]\n    }\n    ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/survey",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "survey"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3. Add survey Item to survey - passing case",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"surveys\": [\n        0,\n        1\n    ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/survey/0",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "survey",
+            "0"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3. Add survey Item to survey - failing case - empty list",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"surveys\": [\n        \n    ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/survey/0",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "survey",
+            "0"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "4. Get the set of all surveys - passing case",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/survey",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "survey"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "4. Get the set of all surveys - failing case - incorrect path",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/surve",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "surve"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "5. Get a specific survey - passing case",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/survey/0",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "survey",
+            "0"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "5. Get a specific survey - failing case - survey doesn't exist",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/survey/50",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "survey",
+            "50"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "6. Create survey instance - passing case",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"userName\": \"jeff\",\n    \"surveyId\": 1\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/survey/instance",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "survey",
+            "instance"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "6. Create survey instance - failing case - survey doesn't exist",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"userName\": \"jeff\",\n    \"surveyId\": 3\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/survey/instance",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "survey",
+            "instance"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "7. Accept an answer survey Instance - passing case",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"itemId\": 0,\n    \"answerChosen\": \"4\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/survey/instance/0",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "survey",
+            "instance",
+            "0"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "7. Accept an answer survey Instance - failing case - choice that doesn't exist",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"itemId\": 0,\n    \"answerChosen\": \"9\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/survey/instance/0",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "survey",
+            "instance",
+            "0"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "8. Get survey instance from state - passing case",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/survey/instance/state/CREATED",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "survey",
+            "instance",
+            "state",
+            "CREATED"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "8. Get survey instance from state - failing case - Lowercase state path",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/survey/instance/state/created",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "survey",
+            "instance",
+            "state",
+            "created"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "9. Get specific survey instance - passing case",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/survey/instance/0",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "survey",
+            "instance",
+            "0"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "9. Get specific survey instance - failing case - instance that doesn't exist",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/survey/instance/50",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "survey",
+            "instance",
+            "50"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "10. Delete a specific survey - passing case",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/survey/0",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "survey",
+            "0"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "10. Delete a specific survey - failing case",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    }
+  ]
+}

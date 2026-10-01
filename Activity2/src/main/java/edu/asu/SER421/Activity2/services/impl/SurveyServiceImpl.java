@@ -71,6 +71,9 @@ public class SurveyServiceImpl implements SurveyService {
 
     @Override
     public SurveyItem addSurveyItem(int itemId, List<Integer> surveys) {
+        if(surveys.isEmpty()){
+            return null;
+        }
         SurveyItem newSurvey = null;
         for(SurveyItem items :surveyItemService.getSurveyItems()){
             if(itemId == items.getId()){
@@ -83,7 +86,6 @@ public class SurveyServiceImpl implements SurveyService {
             for(Survey survey : surveyList){
                 if(!survey.getState().equals(SurveyState.DELETED)) {
                     if (id == survey.getId()) {
-//                        System.out.println(surveyItemService.addItemToList(newSurvey));
                         survey.addItem(newSurvey);
                     }
                 }
